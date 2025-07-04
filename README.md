@@ -11,5 +11,5 @@ This Streamlit app predicts crop yield, rainfall, and temperature using historic
 ## How to Run
 ```bash
 pip install -r requirements.txt
-streamlit run app.py
+streamlit run app1.py
 
