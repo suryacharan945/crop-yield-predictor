@@ -2,12 +2,20 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import zipfile
+import io
 
 st.set_page_config(layout="centered", page_title="Crop Yield & Weather Predictor", page_icon="🌾")
 
 @st.cache_data
 def load_data():
-    df_hist = pd.read_csv("combined_crop_weather_dataset.csv")
+    # Load ZIP file and extract CSV
+    with open("combined_crop_weather_dataset.csv.zip", "rb") as z:
+        zip_bytes = zipfile.ZipFile(io.BytesIO(z.read()))
+        with zip_bytes.open("combined_crop_weather_dataset.csv") as f:
+            df_hist = pd.read_csv(f)
+
+    # Load future prediction CSV
     df_pred = pd.read_csv("future_yield_predictions.csv")
 
     # Normalize column names
@@ -26,16 +34,16 @@ def load_data():
 
     # Map mismatched crops from historical to prediction dataset naming
     crop_name_mapping = {
-        "Rabi Rice": "rice",
-        "Mustard": "rapeseed &mustard"
+        "Rabi Rice": "Rice",
+        "Mustard": "Rapeseed &Mustard"
     }
-    df_pred['crop'] = df_pred['crop'].replace({v: v for v in df_pred['crop'].unique()})
     df_hist['mapped_crop'] = df_hist['crop'].replace(crop_name_mapping)
 
     # Fix rainfall scale (if total_rainfall is in mm, divide by 1000)
     df_pred['total_rainfall'] = df_pred['total_rainfall'] / 1000.0
 
     return df_hist, df_pred
+
 
 df_hist, df_pred = load_data()
 
