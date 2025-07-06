@@ -5,7 +5,7 @@ This Streamlit app predicts crop yield, temperature, and rainfall for Indian sta
 ## 📁 Files
 
 - `app.py` — Streamlit frontend
-- `data/combined_crop_weather_dataset.csv` — Historical data
+- `combined_crop_weather_dataset.csv.zip` — Compressed due to GitHub size limits
 - `data/future_yield_predictions.csv` — Predicted yield for 2023–2025
 - `isi_project_codes.pdf` — Original code and training pipeline
 
