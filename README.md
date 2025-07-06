@@ -1,15 +1,27 @@
-# 🌾 Crop Yield Predictor
+# 🌾 Crop Yield & Weather Predictor (2000–2025)
 
-This Streamlit app predicts crop yield, rainfall, and temperature using historical weather and reservoir data (2000–2022) and projects future yields (2023–2025).
+This Streamlit app predicts crop yield, temperature, and rainfall for Indian states using historical weather data and machine learning models.
 
-## Features
-- Supports 6 major Rabi crops
-- Predicts using Random Forest Regressor
-- Clean UI with visualizations
-- Ready to deploy on Streamlit Cloud
+## 📁 Files
 
-## How to Run
+- `app.py` — Streamlit frontend
+- `data/combined_crop_weather_dataset.csv` — Historical data
+- `data/future_yield_predictions.csv` — Predicted yield for 2023–2025
+- `isi_project_codes.pdf` — Original code and training pipeline
+
+## 📊 Features
+
+- Predict yield from 2000 to 2025
+- Weather modeling using Random Forest
+- Yield forecasting using Gradient Boosting
+- Interactive visualizations and trends
+- Handles edge cases like crop name mismatch and rainfall scaling
+
+## 🚀 How to Run
+
 ```bash
 pip install -r requirements.txt
-streamlit run app1.py
+python -m streamlit run app.py
+
+
 
